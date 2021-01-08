@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mookfood/components/logo.dart';
 import 'package:mookfood/components/normal_dialog.dart';
-
 import '../constant.dart';
 
 class SignUp extends StatefulWidget {
@@ -33,6 +32,7 @@ class _SignUpState extends State<SignUp> {
           padding: EdgeInsets.all(30.0),
           children: <Widget>[
             myLogo(),
+         
             SizedBox(
               height: 10.0,
             ),
@@ -277,19 +277,18 @@ class _SignUpState extends State<SignUp> {
           // formKey.currentState.save();
           print(
               'username = $nameString , email = $emailString , password = $passwordString , chooseType = $chooseType');
-          if (nameString == null || nameString.isEmpty) {
+          if (nameString == null ||
+              nameString.isEmpty ||
+              emailString == null ||
+              emailString.isEmpty ||
+              passwordString == null ||
+              passwordString.isEmpty) {
             print('Have Space username');
-          }
-          if (emailString == null || emailString.isEmpty) {
-            print('Have Space email');
-          }
-          if (passwordString == null || passwordString.isEmpty) {
-            print('Have Space pwd');
-          }
-          if (chooseType == null || chooseType.isEmpty) {
-            print('Have Space choosetype');
-          }
-          normalDialog(context, 'Please Fill the Form Completely');
+            normalDialog(context, 'Please Fill the Form Completely');
+          } else if (chooseType == null) {
+            normalDialog(context, 'Plese choose type of applicants');
+          } else {}
+
           print('Sign up');
         },
         child: Text(

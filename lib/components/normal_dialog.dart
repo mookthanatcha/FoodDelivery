@@ -6,19 +6,19 @@ Future<void> normalDialog(BuildContext context, String message) async {
     builder: (context) => SimpleDialog(
       title: Text(message),
       children: <Widget>[
-        FlatButton(
-          onPressed: () => Navigator.pop(context),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FlatButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
                 "OK",
                 style: TextStyle(
                   color: Colors.red,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         )
       ],
     ),

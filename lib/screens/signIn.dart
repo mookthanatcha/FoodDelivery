@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mookfood/components/logo.dart';
-import 'package:mookfood/components/title.dart';
 import 'package:mookfood/constant.dart';
+import 'package:mookfood/providers/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class SignIn extends StatefulWidget {
   SignIn({Key key}) : super(key: key);
@@ -69,6 +70,13 @@ class _SignInState extends State<SignIn> {
           formKey.currentState.save();
           print('email = $emailString , password = $passwordString');
           print('Log in');
+          Navigator.pushReplacementNamed(context, "/");
+          // Navigator.pushNamed(context, "/");
+          
+          // Navigator.pushReplacement(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => HomeScreen()));
         },
         child: Text(
           'Log In',
@@ -115,6 +123,9 @@ class _SignInState extends State<SignIn> {
           }
         },
         onSaved: (String value) {
+          var userProvider = Provider.of<UserProvider>(context, listen: false);
+          userProvider.setNickNameUser(value);
+
           emailString = value.trim();
         },
       ),
