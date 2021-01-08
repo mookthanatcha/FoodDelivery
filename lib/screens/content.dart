@@ -27,7 +27,7 @@ class _ContentState extends State<Content> {
                   title: 'Recommended',
                   press: () {},
                 ),
-                RecommendFood(size: size),
+                Container(height: 600,width: 350,child: RecommendFood(size: size)),
               ],
             ),
           ],
