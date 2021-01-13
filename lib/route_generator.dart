@@ -4,6 +4,7 @@ import 'package:mookfood/screens/content.dart';
 import 'package:mookfood/screens/detail_menu.dart';
 import 'package:mookfood/screens/homeScreen.dart';
 import 'package:mookfood/screens/menu.dart';
+import 'package:mookfood/screens/shop.dart';
 import 'package:mookfood/screens/signIn.dart';
 import 'package:mookfood/screens/signup.dart';
 import 'package:mookfood/screens/test.dart';
@@ -27,6 +28,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) => Menu());
       case '/detailMeNuPage':
         return MaterialPageRoute(builder: (context) => DetailMenu());
+      case '/shopPage':
+        return MaterialPageRoute(builder: (context) => Shop());
 
       default:
         return _errorRoute();

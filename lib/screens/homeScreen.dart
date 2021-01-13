@@ -10,6 +10,7 @@ import 'package:mookfood/models/user.dart';
 import 'package:mookfood/providers/category_provider.dart';
 import 'package:mookfood/providers/order_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -17,20 +18,35 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Order> menuList = [
-    Order(menuName: "Chicken fries", price: "100 THB", quantity: 10)
-  ];
+  @override
+  void initState() {
+    super.initState();
+    checkUser();
+  }
+
+  Future<Null> checkUser() async {
+    try {
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      String name = preferences.getString('Name');
+      if (name != null && name.isNotEmpty) {
+        Navigator.pushReplacementNamed(context, "/contentPage");
+      } 
+    } catch (e) {}
+  }
+
+  // List<Order> menuList = [
+  //   Order(menuName: "Chicken fries", price: "100 THB", quantity: 10)
+  // ];
 
   //  var userProvider = Provider.of<UserProvider>(context, listen: false);
   //         userProvider.setNickNameUser(value);
 
-  List<Order> menuList2 = [
-    Order(menuName: "Sweet Chicken fries", price: "100 THB", quantity: 10)
-  ];
-  User userMook =
-      User(fullName: "Thanatcha Sukapunpan", id: "1", nickName: "Non");
+  // List<Order> menuList2 = [
+  //   Order(menuName: "Sweet Chicken fries", price: "100 THB", quantity: 10)
+  // ];
+  // User userMook =
+  //     User(fullName: "Thanatcha Sukapunpan", id: "1", nickName: "Non");
   // List<String> data = ["data1", "data2"];
-
 
   @override
   Widget build(BuildContext context) {
@@ -42,17 +58,17 @@ class _HomeScreenState extends State<HomeScreen> {
           right: kDefaultPadding,
         ),
         children: [
-          Container(
-            child: ShowTitle(
-              title: "Category",
-            ),
-          ),
-          Container(
-            child: categoryView(context),
-          ),
-          Container(
-            child: menuListView(context),
-          ),
+          // Container(
+          //   child: ShowTitle(
+          //     title: "Category",
+          //   ),
+          // ),
+          // Container(
+          //   child: categoryView(context),
+          // ),
+          // Container(
+          //   child: menuListView(context),
+          // ),
         ],
       ),
       drawer: ShowDrawer(),
@@ -96,7 +112,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               !orderProvider.getFavourite(index), index);
                         },
                         child: Icon(Icons.favorite),
-                        
                       ),
               );
             },

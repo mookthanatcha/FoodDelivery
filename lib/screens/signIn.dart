@@ -3,6 +3,7 @@ import 'package:mookfood/components/logo.dart';
 import 'package:mookfood/constant.dart';
 import 'package:mookfood/providers/user_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignIn extends StatefulWidget {
   SignIn({Key key}) : super(key: key);
@@ -12,8 +13,22 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   checkUser();
+  // }
+
   final formKey = GlobalKey<FormState>();
   String emailString, passwordString;
+
+  Future<Null> routeToSerice() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('Name', emailString);
+    Navigator.pushReplacementNamed(context, "/contentPage");
+
+    // checkUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,13 +85,7 @@ class _SignInState extends State<SignIn> {
           formKey.currentState.save();
           print('email = $emailString , password = $passwordString');
           print('Log in');
-          Navigator.pushReplacementNamed(context, "/");
-          // Navigator.pushNamed(context, "/");
-          
-          // Navigator.pushReplacement(
-          //     context,
-          //     MaterialPageRoute(
-          //         builder: (BuildContext context) => HomeScreen()));
+          routeToSerice();
         },
         child: Text(
           'Log In',
@@ -108,8 +117,6 @@ class _SignInState extends State<SignIn> {
           ),
           labelText: 'User',
           labelStyle: TextStyle(color: Colors.blue.shade900),
-          // helperText: 'Input your email',
-          // helperStyle: TextStyle(color: Colors.purple),
           border: new OutlineInputBorder(
             borderSide: new BorderSide(color: Colors.purple),
             borderRadius: BorderRadius.all(Radius.circular(50)),
@@ -125,7 +132,6 @@ class _SignInState extends State<SignIn> {
         onSaved: (String value) {
           var userProvider = Provider.of<UserProvider>(context, listen: false);
           userProvider.setNickNameUser(value);
-
           emailString = value.trim();
         },
       ),

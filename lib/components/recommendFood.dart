@@ -36,24 +36,22 @@ class RecommendFood extends StatelessWidget {
         top: kDefaultPadding / 2,
         bottom: kDefaultPadding * 2.5,
       ),
-      width: size.width * 0.4,
-      height: size.height * 0.35,
       child: Column(
         children: <Widget>[
           Tooltip(
             message: "Delicious Food",
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
-              child: Image.network(
+              child: Image.asset(
                 foodShopProvider.foodShop[index].image,
                 width: size.width * 0.4,
-                height: size.height * 0.35,
+                // height: size.height * 0.35,
               ),
             ),
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushReplacementNamed(context, "/meNuPage");
+              Navigator.pushNamed(context, "/meNuPage");
             },
             child: Container(
               width: size.width * 0.395,

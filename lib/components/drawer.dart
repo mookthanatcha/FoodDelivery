@@ -11,6 +11,8 @@ class ShowDrawer extends StatefulWidget {
   _ShowDrawerState createState() => _ShowDrawerState();
 }
 
+
+
 class _ShowDrawerState extends State<ShowDrawer> {
   Widget showDrawer(context) {
     return Drawer(
@@ -38,11 +40,10 @@ class _ShowDrawerState extends State<ShowDrawer> {
                     bottom: kDefaultPadding, top: kDefaultPadding),
                 width: 100.0,
                 height: 50.0,
-                // child: Icon(Icons.face),
                 child: Image.asset("assets/icons/hamburger.png"),
               ),
               Container(
-                child: Text(userProvider.getNickNameUser()),
+                // child: Text(userProvider.getNickNameUser()),
               ),
             ],
           ),
